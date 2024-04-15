@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask App</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  .left-div, .right-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .left-div {
+    flex: 0.3;
+    background-color: #0097b2;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 20px 20px 20px rgb(0, 0, 0);
+  }
+  .right-div {
+    flex: 0.7;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-image: url('{{ url_for("static", filename="images/index_back.webp") }}');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .button-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .button {
+    margin: 5px;
+    width: 80%;
+    max-width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: inline-block; /* Added display property */
+    text-decoration: none; /* Remove underline */
+    text-align: center; /* Center text */
+    line-height: 40px; /* Center vertically */
+    color: white; /* Set text color */
+  }
+  .button-paciente {
+    background-color: #064469;
+  }
+  .button-salud {
+    background-color: #50dbf4;
+    color: black;
+  }
+  .logo {
+    height: auto;
+    margin-top: 20px;
+  }
+  .additional-info {
+    margin-top: auto;
+    text-align: center;
+    font-size: 12px;
+    color: white; /* Set text color */
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-div">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="Logo">
+      </div>
+      <div class="button-container">
+        <div>SELECCIONE SU PERFIL</div>
+        <a class="button button-paciente" href="/login">PACIENTE</a>
+        <a class="button button-salud" href="/login">PROFESIONAL </a>
+        <div class="additional-info">¿Ya tienes una cuenta? Ingresa ahora</div>
+      </div>
+    </div>
+    <div class="right-div">
+      <!-- Contenido del div derecho -->
+    </div>
+  </div>
+</body>
+</html>

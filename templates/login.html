@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask App</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  .left-div, .right-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .left-div {
+    flex: 0.3;
+    background-color: #0097b2;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 20px 20px 20px rgb(0, 0, 0);
+  }
+  .right-div {
+    flex: 0.7;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-image: url('{{ url_for("static", filename="images/index_back.webp") }}');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .form-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .form-group {
+    width: 80%;
+    margin-bottom: 15px;
+  }
+  .form-control {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  .btn-primary {
+    width: 100%;
+    height: 40px;
+    background-color: #064469;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .btn-primary:hover {
+    background-color: #032d3a;
+  }
+  .logo {
+    height: auto;
+    margin-top: 20px;
+  }
+  .additional-info {
+    margin-top: auto;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-div">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="Logo">
+      </div>
+      <div class="form-container">
+        <h1>Login</h1>
+        <form action="" method="POST" novalidate>
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            <label>{{ form.username.label }}</label>
+            {{ form.username(size=32, class="form-control") }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label>{{ form.password.label }}</label>
+            {{ form.password(size=32, class="form-control") }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+
+          <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+          <p>{{ form.submit(class="btn btn-primary") }}</p>
+        </form>
+      </div>
+    </div>
+    <div class="right-div">
+      <!-- Contenido del div derecho -->
+    </div>
+  </div>
+</body>
+</html>
