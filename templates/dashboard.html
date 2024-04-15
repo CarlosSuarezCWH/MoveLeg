@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+  <style>
+    /* Establecer el ancho del contenido principal al 80% */
+    .main-content {
+      width: 80%;
+      float: right; /* Alineación a la derecha para permitir que el sidebar esté a la izquierda */
+    }
+
+  </style>
+{% endblock %}
+
 {% block body %}
-  <h1>Dashboard <small> {{ current_user.username }} </small></h1>
-  <p>If you can see this page you are a user (authenticated with a username and password).</p>
+  <!-- Div para el contenido principal -->
+  <div class="main-content">
+    <h1>Dashboard <small> {{ current_user.username }} </small></h1>
+    <p>If you can see this page you are a user (authenticated with a username and password).</p>
+  </div>
+
+
 {% endblock %}

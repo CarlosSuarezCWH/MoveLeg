@@ -4,54 +4,81 @@
 <h1>Account Detail</h1>
 <hr />
 {% from "includes/_formhelpers.html" import render_field %}
-<div>
+<div class="container">
     <form action="" method="POST" id="account_details">
         {{ form.csrf_token }}
 
-        {% if form %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ form.name.label }}</label>
+                    {{ form.name(size=32, class="form-control") }}
+                    {% for error in form.name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
 
-        <div class="form-group">
-            <label>{{ form.name.label }}</label>
-            {{ form.name(size=32, class="form-control") }}
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+                <div class="form-group">
+                    <label>{{ form.email.label }}</label>
+                    {{ form.email(size=32, class="form-control") }}
+                    {% for error in form.email.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label>{{ form.password.label }}</label>
+                    {{ form.password(size=32, class="form-control") }}
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label>{{ form.confirm.label }}</label>
+                    {{ form.confirm(size=32, class="form-control") }}
+                    {% for error in form.confirm.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ form.phone_number.label }}</label>
+                    {{ form.phone_number(size=32, class="form-control") }}
+                    {% for error in form.phone_number.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label>{{ form.cause_of_amputation.label }}</label>
+                    {{ form.cause_of_amputation(size=32, class="form-control") }}
+                    {% for error in form.cause_of_amputation.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label>{{ form.surgery_date.label }}</label>
+                    {{ form.surgery_date(class="form-control") }}
+                    {% for error in form.surgery_date.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label>{{ form.evaluation_date.label }}</label>
+                    {{ form.evaluation_date(class="form-control") }}
+                    {% for error in form.evaluation_date.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>{{ form.email.label }}</label>
-            {{ form.email(size=32, class="form-control") }}
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <hr/>
-        <div class="form-group">
-            <label>{{ form.password.label }}</label>
-            {{ form.password(size=32, class="form-control") }}
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-    
-        <div class="form-group">
-            <label>{{ form.confirm.label }}</label>
-            {{ form.confirm(size=32, class="form-control") }}
-            {% for error in form.confirm.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-
-        {% endif %}
+        <button type="submit" form="account_details" class="btn btn-primary">Update Account</button>
     </form>
-
-    <button type="submit" form="account_details" formmethod="POST"
-        formaction="{{ url_for('account', user_id=form.id.data) }}" class="btn btn-primary">Update Account</button>
-
-
-
-
-
-
 </div>
 {% endblock %}

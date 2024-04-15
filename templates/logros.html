@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1></h1>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2></h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Logros</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.name }}</td>
+                            <td>{{ patient.email }}</td>
+                            <td>{{ patient.achievements }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Videos Vistos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>URL del Video</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for video in videos %}
+                        <tr>
+                            <td>{{ video.name }}</td>
+                            <td>{{ video.category }}</td>
+                            <td>{{ video.url }}</td>
+                            <td>
+                                <a href="{{ url_for('watch_video', video_id=video.id) }}" class="btn btn-primary btn-sm">Ver Video</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

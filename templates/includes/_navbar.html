@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,67 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .full-height {
-            height: 100vh;
+            height: 90%;
             position: fixed;
             overflow-y: auto;
         }
+
+        /* Estilo para el navbar */
+        .sidebar {
+            background-color: #0097b2;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 10px; /* Añadir bordes redondeados */
+        }
+
+        /* Estilo para el logo */
+        .navbar-brand img {
+            width: 150px;
+            margin-left: 10px;
+        }
+
+        /* Color de texto blanco */
+        .nav-link {
+            color: white;
+        }
+
+        /* Línea blanca entre las opciones del menú */
+        .nav-item {
+            border-bottom: 1px solid white;
+        }
+
+        /* Eliminar margen en el cuerpo */
+        body {
+            margin: 0;
+        }
+
+        /* Asegurar que el sidebar no exceda el alto de la página de forma horizontal */
+        .sidebar {
+            overflow-x: hidden;
+        }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar full-height">
+            <nav class="col-md-2 d-none d-md-block sidebar full-height">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="Logo">
+                </div>
+
+                <!-- Lista de enlaces -->
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
+
+                        {% if current_user.is_admin() or current_user.is_user() %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
+                        {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">About</a>
+                            <a class="nav-link" href="/videos">Rehabilitacion</a>
                         </li>
 
                         {% if current_user.is_anonymous %}
@@ -37,15 +82,14 @@
 
                         {% if current_user.is_admin() %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/control_panel">Control Panel</a>
+                            <a class="nav-link" href="/control_panel">Administrar Usuarios</a>
                         </li>
                         {% endif %}
 
-                        {% if current_user.is_admin() or current_user.is_user() %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/logros">Logros</a>
                         </li>
-                        {% endif %}
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="/account">Account</a>
@@ -67,4 +111,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

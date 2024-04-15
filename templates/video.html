@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <style>
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+            overflow: hidden;
+        }
+
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fullscreen-btn {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .video-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+
+    <div class="container">
+        <h1 class="mt-5"></h1>
+        <div class="row">
+            {% for video in videos %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <!-- Mostrar el título del video -->
+                            <h5 class="card-title video-title">{{ video.name }}</h5>
+                            {% set video_id = extract_youtube_video_id(video.url) %}
+                            {% if video_id %}
+                                <!-- Incrustar el video de YouTube dentro de un iframe -->
+                                <div class="video-wrapper">
+                                    <iframe class="video-iframe" id="{{ video.id }}" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-primary fullscreen-btn" onclick="sendVideoViewEvent('{{ video.id }}')">Iniciar</button>
+                                </div>
+                            {% else %}
+                                <p class="text-danger">Error: URL del video de YouTube no válida.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if loop.index % 3 == 0 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+    function sendVideoViewEvent(videoId) {
+        var userId = "{{ current_user.id }}"; // Obtener el ID del usuario actual
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{{ url_for('watch_video') }}", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('El evento de inicio de video ha sido registrado.');
+                } else {
+                    console.error('Error al registrar el evento de inicio de video:', xhr.status);
+                }
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Error de red al intentar registrar el evento de inicio de video.');
+        };
+        var data = JSON.stringify({ "video_id": videoId, "user_id": userId });
+        xhr.send(data);
+    }
+</script>
+
+{% endblock %}
