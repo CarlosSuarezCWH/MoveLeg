@@ -1,59 +1,31 @@
-# Flask Role Based Access Control
-Basic structure for starting a Flask project with basic role based security.
+# Sistema de Ejercicios para la Mejora de la Visión
 
----
-
-Create the database table
----
-```
-CREATE TABLE users (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    username VARCHAR(30),
-    password_hash VARCHAR(128),
-    access INT(11), register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-```
-
-Create the first admin user
----
-
-1. Create the database table.
-
-2. Start the application and register a new user from the webpage
-
-3. In the database users table, change access to ``` 2 ``` for admin
-
-4. Log in to the application as this new user
+Este sistema de gestión fue creado por Charly Suarez en conjunto con Global Crew y se ha cedido enteramente a los alumnos de Kinesiología de Global University para su uso y beneficio. A continuación, se proporciona información importante sobre el sistema y su configuración.
 
 
-Use this template to start a new application
----
-1. Clone this repository to local computer
+## Descripción
 
-2. Rename the directory to reflect the new project name
+El Sistema de Ejercicios  es una aplicación diseñada para ayudar a las personas con amputaciones a mejorar su calidad de vida a través de una serie de ejercicios específicos. La aplicación se ha desarrollado en Python y utiliza una base de datos MySQL para realizar un seguimiento del progreso de los usuarios.
 
-3. Delete .git folder
+## Características
 
-4. Create a new virtual environment. ```python -m venv ./venv```
+- Videos ejercicios diseñados para publico especifico
+- Seguimiento del progreso de los usuarios a lo largo del tiempo.
+- Recursos y consejos para el cuidado ocular.
 
-5. Activate the new virtual environment
-   - Windows:  ```.\venv\Scripts\activate```
-   - Mac:  ```source ./venv/bin/activate```
+## Requisitos
 
-6. Install the dependencies ```pip install -r requirements.txt```
+Para ejecutar el sistema en su entorno local, necesitará:
 
-7. Make a new repository by running ```git init``` in the folder.
+- Python 3.x instalado en su sistema.
+- Un servidor MySQL para alojar la base de datos.
+- Las bibliotecas y módulos de Python especificados en `requirements.txt`.
 
-8. Track all the files in the new local repository ```git add .```
+## Instalación
 
-9. Make the first commit of this new project ```git commit -m 'first commit of <project name>``` from flask_template
+1. Clone o descargue este repositorio en su máquina local.
+2. Cree una base de datos MySQL y configure las credenciales en `config.py`.
+3. Instale las dependencias requeridas ejecutando el siguiente comando:
 
-10. On Github, create a new repository. DO NOT initialize it
-
-11. Connect the local repository to the new Github repository ```git remote add origin <<repository_URL>>```
-
-12. Create and change to a new local development branch ```git checkout b development```
-
-13. Continue working with the project as you normally would.
+```shell
+pip install -r requirements.txt
