@@ -1,4 +1,4 @@
-# Sistema de Ejercicios para la Mejora de la Visión
+# Sistema de Ejercicios
 
 Este sistema de gestión fue creado por Charly Suarez en conjunto con Global Crew y se ha cedido enteramente a los alumnos de Kinesiología de Global University para su uso y beneficio. A continuación, se proporciona información importante sobre el sistema y su configuración.
 
